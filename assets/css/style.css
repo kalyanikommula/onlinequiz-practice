@@ -19,3 +19,8 @@
     background-color: hsl(var(--hue),100%,20%);
     
  }
+ .chooseAnswer img {
+   width: 100px;
+   height: 100px;
+
+ }
