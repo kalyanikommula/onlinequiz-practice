@@ -20,9 +20,12 @@
     
  }
  img {
-   border: 1px solid #ddd;
+   
    padding: 5px;
-   width: 150px;
+   width: 180px;
+   height: 180px;
+   border-radius: 10px;
+   margin: 5px;
  
    
 
