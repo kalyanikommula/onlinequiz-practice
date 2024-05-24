@@ -36,12 +36,24 @@ const start = document.getElementById("start-btn");
 start.addEventListener('click', startQuiz);
 const menu = document.getElementById("menu");
 const onlineQuiz = document.getElementById("onlineQuiz-container");
+const questionElement = document.getElementById("question");
+const answerElement = document.getElementById("chooseAnswer");
+const submitElement = document.getElementById("submit-answer");
+const nextButton = document.getElementById("next-btn");
 
+let cuttentQuestionIndex = 0;
+let score = 0;
 
 function startQuiz() {
     console.log("start");
     start.classList.add("hide");
     menu.classList.add("hide");
     onlineQuiz.classList.remove("hide");
+    showQuestion();
 
+
+}
+function showQuestion() {
+    const currentQuestion = questions[cuttentQuestionIndex];
+    questionElement.innerHTML = currentQuestion.question;
 }
