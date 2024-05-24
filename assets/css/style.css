@@ -26,10 +26,18 @@
  .container h1 {
   font-size: 25px;
   font-weight: 600;
-  padding-bottom: 30px;
+  padding-bottom: 25px;
   color: #001e4d;
   text-transform: capitalize;
+  text-align: center;
 
+ }
+ .wishes {
+   font-size: 20px;
+   text-align: center;
+   color: orange;
+   padding-bottom: 5px;
+    
  }
  .onlineQuiz-container {
   padding: 20px 0;
@@ -40,3 +48,31 @@
   font-weight: 600;
 
  }
+ img {
+   width: 150px;
+   height: 150px;
+   margin: 10px;
+   border-radius: 10px;
+   }
+
+   
+   .controls .btn {
+
+      font-size: 25px;
+      border-radius: 5px;
+      padding: 10px 20px;
+      background-color: hsl(var(--hue),100%,30%);
+      color: #ffff;
+      border: hsl(var(--hue),100%,50%);
+      text-align: center;
+      font-weight: bold;
+      margin: 5px;
+   }
+   .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   .hide{
+     display: none; 
+   }
