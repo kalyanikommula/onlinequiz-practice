@@ -58,9 +58,9 @@ function showQuestion() {
     const currentQuestion = questions[cuttentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question;
     currentQuestion.answers.forEach(answer => {
-        const images = document.createElement("button");
+        const images = document.createElement("img");
         images.innerHTML = answer.option;
-        images.classList.add("butn");
+        images.classList.add("image");
         answerElement.appendChild(images);
 
     })
