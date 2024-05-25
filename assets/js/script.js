@@ -3,7 +3,7 @@ const questions = [
         question: "What is the England national Animal?",
         answers: [
             { option: "assets/images/leopard.png", correct: false},
-            { option: "assrts/images/Lion.png", correct: true},
+            { option: "assets/images/Lion.png", correct: true},
             {option: "assets/images/Horse.png", correct: false},
         ]
     },
@@ -11,7 +11,7 @@ const questions = [
         question: "Which city is belongs to the England?",
         answers: [
             { option: "assets/images/london-bridge.png", correct: true},
-            { option: "assrts/images/eiffel-tower", correct: false},
+            { option: "assets/images/eiffel-tower", correct: false},
             {option: "assets/images/Tajmahal", correct: false},
         ]
     },
@@ -19,7 +19,7 @@ const questions = [
         question: "Which one is the National Animal of India?",
         answers: [
             { option: "assets/images/deer.png", correct: false},
-            { option: "assrts/images/elephant.png", correct: false},
+            { option: "assets/images/elephant.png", correct: false},
             {option: "assets/images/Tiger.png", correct: true},
         ]
     },
@@ -27,7 +27,7 @@ const questions = [
         question: "What is the national flower of India?",
         answers: [
             { option: "assets/images/Rose.png", correct: false},
-            { option: "assrts/images/lotus.png", correct: true},
+            { option: "assets/images/lotus.png", correct: true},
             {option: "assets/images/sunflower.png", correct: false},
         ]
     },
@@ -58,9 +58,9 @@ function showQuestion() {
     const currentQuestion = questions[cuttentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question;
     currentQuestion.answers.forEach(answer => {
-        const images = document.createElement("img");
-        images.innerHtml = answer.option;
-        images.classList.add("image");
+        const images = document.createElement("button");
+        images.innerHTML = answer.option;
+        images.classList.add("butn");
         answerElement.appendChild(images);
 
     })
