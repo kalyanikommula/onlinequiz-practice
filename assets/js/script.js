@@ -41,7 +41,7 @@ const answerElement = document.getElementById("chooseAnswer");
 const submitElement = document.getElementById("submit-answer");
 const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
-
+let shuffledQuestions;
 let cuttentQuestionIndex = 0;
 let score = 0;
 
@@ -80,9 +80,9 @@ function resetFirstElements() {
         answerElement.removeChild(answerElement.firstChild);
     }
 }
-function selectAnswer(e) {
+/*function selectAnswer(e) {
     const selectedImg = e.target;
-    const isCorrect = selectedImg.dataset.answer === 'true';
+    const isCorrect =  selectedImg.dataset.correct === 'true';
     if(isCorrect) {
        selectedImg.classList.add('correct');
         //submitElement.innerText = ` correct answer is ${answer.correct}`;
@@ -101,4 +101,32 @@ function selectAnswer(e) {
      images.disabled = true;
     })
     nextButton.classList.remove('hide');
-}
+}*/
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerElement.children).forEach(button => {
+      setStatusClass(button, button.dataset.correct)
+    })
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+      nextButton.classList.remove('hide')
+    } else {
+      startButton.innerText = 'Restart'
+      startButton.classList.remove('hide')
+    }
+  }
+  
+  function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+      element.classList.add('correct')
+    } else {
+      element.classList.add('wrong')
+    }
+  }
+  
+  function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+  }
