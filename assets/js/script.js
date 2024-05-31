@@ -106,27 +106,36 @@ function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answerElement.children).forEach(button => {
+   /* Array.from(answerElement.children).forEach(button => {
       setStatusClass(button, button.dataset.correct)
-    })
-    if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    })*/
+    /*if (shuffledQuestions.length > currentQuestionIndex + 1) {
       nextButton.classList.remove('hide')
     } else {
       startButton.innerText = 'Restart'
       startButton.classList.remove('hide')
-    }
+    }*/
   }
   
   function setStatusClass(element, correct) {
-    clearStatusClass(element)
-    if (correct) {
-      element.classList.add('correct')
+    clearStatusClass(element);
+     if (correct) {
+      element.classList.add('correct');
+      displayMessage(correct);
     } else {
-      element.classList.add('wrong')
+      element.classList.add('wrong');
     }
+    
+    nextButton.classList.remove('hide');
   }
   
   function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
   }
+
+function displayMessage(correct) {
+    if(questions[cuttentQuestionIndex].answers.correct === 'true') {
+        submitElement.innerHTML = `correct answer is `
+    }
+}
