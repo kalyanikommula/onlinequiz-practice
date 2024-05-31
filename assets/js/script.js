@@ -2,33 +2,33 @@ const questions = [
     {
         question: "What is the England national Animal?",
         answers: [
-            {imgURL: "assets/images/leopard.png", correct: false},
-            {imgURL: "assets/images/Lion.png", correct: true},
-            {imgURL: "assets/images/Horse.png", correct: false},
+            {option: "assets/images/leopard.png", correct: false},
+            {option: "assets/images/Lion.png", correct: true},
+            {option: "assets/images/Horse.png", correct: false},
         ]
     },
     {
         question: "Which city is belongs to the England?",
         answers: [
-            {imgURL: "assets/images/london-bridge.png", correct: true},
-            {imgURL: "assets/images/eiffel-tower", correct: false},
-            {imgURL: "assets/images/Tajmahal", correct: false},
+            {option: "assets/images/london-bridge.png", correct: true},
+            {option: "assets/images/eiffel-tower", correct: false},
+            {option: "assets/images/Tajmahal", correct: false},
         ]
     },
     {
         question: "Which one is the National Animal of India?",
         answers: [
-            {imgURL: "assets/images/deer.png", correct: false},
-            {imgURL: "assets/images/elephant.png", correct: false},
-            {imgURL: "assets/images/Tiger.png", correct: true},
+            {option: "assets/images/deer.png", correct: false},
+            {option: "assets/images/elephant.png", correct: false},
+            {option: "assets/images/Tiger.png", correct: true},
         ]
     },
     {
         question: "What is the national flower of India?",
         answers: [
-            {imgURL: "../assets/images/Rose.png", correct: false},
-            {imgURL: "../assets/images/lotus.png", correct: true},
-            {imgURL: "../assets/images/sunflower.png", correct: false},
+            {option: "../assets/images/Rose.png", correct: false},
+            {option: "../assets/images/lotus.png", correct: true},
+            {option: "../assets/images/sunflower.png", correct: false},
         ]
     },
 ]
@@ -56,15 +56,49 @@ function startQuiz() {
 
 }
 function showQuestion() {
+    resetFirstElements();
     const currentQuestion = questions[cuttentQuestionIndex];
     questionElement.innerHTML = currentQuestion.question;
     currentQuestion.answers.forEach(answer => {
         const images = document.createElement("img");
-        //images.innerHTML = answer.imgURL;
-        images.setAttribute('src' , answer.imgURL);
+        //images.innerHTML = answer.option;
+        images.setAttribute('src' , answer.option);
        images.classList.add("image");
         answerElement.appendChild(images);
+        if(answer.correct){
+            images.dataset.correct = answer.correct;
+        }
+        images.addEventListener('click', selectAnswer);
 
     })
     
+}
+
+function resetFirstElements() {
+    nextButton.classList.add('hide')
+    while(answerElement.firstChild) {
+        answerElement.removeChild(answerElement.firstChild);
+    }
+}
+function selectAnswer(e) {
+    const selectedImg = e.target;
+    const isCorrect = selectedImg.dataset.answer === 'true';
+    if(isCorrect) {
+       selectedImg.classList.add('correct');
+        //submitElement.innerText = ` correct answer is ${answer.correct}`;
+        //console.log('correct');
+    } else {
+        selectedImg.classList.add('wrong');
+       // submitElement.innerText = `Aww!! sorry the correct answer is ${answer.correct} please try again`;
+        //console.log('wrong');
+        
+    }
+
+    Array.from(answerElement.children).forEach(images => {
+     if(images.dataset.correct === "true"){
+        images.classList.add('correct');
+     }
+     images.disabled = true;
+    })
+    nextButton.classList.remove('hide');
 }

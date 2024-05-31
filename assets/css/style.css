@@ -48,12 +48,21 @@
   font-weight: 600;
   padding: 5px 10px; 
   margin: 0 auto;
+  text-align: center;
 
  }
+ #chooseAnswer {
+   width: 100%;
+   height: auto;
+   text-align: center;
+  
+   
+ }
  .image {
+   max-width: 50%;
    width: 150px;
    height: 150px;
-   margin: 10px;
+   margin: 10px ;
    border-radius: 10px;
    }
 
@@ -77,4 +86,11 @@
    }
    .hide{
      display: none; 
+   }
+
+   .correct {
+    background-color: rgb(72, 164, 72);
+   }
+   .wrong {
+    background-color: rgb(120, 55, 55);
    }
