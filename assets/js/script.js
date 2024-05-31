@@ -2,17 +2,17 @@ const questions = [
     {
         question: "What is the England national Animal?",
         answers: [
-            {option: "assets/images/leopard.png", correct: false},
-            {option: "assets/images/Lion.png", correct: true},
-            {option: "assets/images/Horse.png", correct: false},
+            {option: "assets/images/leopard.png", ans: "leopard", correct: false},
+            {option: "assets/images/Lion.png", ans: "lion", correct: true},
+            {option: "assets/images/Horse.png",ans: "Horse", correct: false},
         ]
     },
     {
         question: "Which city is belongs to the England?",
         answers: [
             {option: "assets/images/london-bridge.png", correct: true},
-            {option: "assets/images/eiffel-tower", correct: false},
-            {option: "assets/images/Tajmahal", correct: false},
+            {option: "assets/images/eiffel-tower.png", correct: false},
+            {option: "assets/images/Tajmahal.png", correct: false},
         ]
     },
     {
@@ -26,9 +26,9 @@ const questions = [
     {
         question: "What is the national flower of India?",
         answers: [
-            {option: "../assets/images/Rose.png", correct: false},
-            {option: "../assets/images/lotus.png", correct: true},
-            {option: "../assets/images/sunflower.png", correct: false},
+            {option: "assets/images/Rose.png", correct: false},
+            {option: "assets/images/lotus.png", correct: true},
+            {option: "assets/images/sunflower.png", correct: false},
         ]
     },
 ]
@@ -57,8 +57,9 @@ function startQuiz() {
 }
 function showQuestion() {
     resetFirstElements();
-    const currentQuestion = questions[cuttentQuestionIndex];
-    questionElement.innerHTML = currentQuestion.question;
+    let currentQuestion = questions[cuttentQuestionIndex];
+    let questionNo = cuttentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + "." + currentQuestion.question;
     currentQuestion.answers.forEach(answer => {
         const images = document.createElement("img");
         //images.innerHTML = answer.option;
@@ -106,36 +107,56 @@ function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
-   /* Array.from(answerElement.children).forEach(button => {
-      setStatusClass(button, button.dataset.correct)
-    })*/
-    /*if (shuffledQuestions.length > currentQuestionIndex + 1) {
-      nextButton.classList.remove('hide')
-    } else {
-      startButton.innerText = 'Restart'
-      startButton.classList.remove('hide')
-    }*/
+    Array.from(answerElement.children).forEach(img => {
+     if(img.dataset.correct === 'true') {
+        img.classList.add('correct');
+     }
+     img.disabled = true;
+     });
+    
+    nextButton.classList.remove('hide');
   }
   
   function setStatusClass(element, correct) {
     clearStatusClass(element);
      if (correct) {
-      element.classList.add('correct');
-      displayMessage(correct);
+      element.classList.add('correct'); 
+      score++;  
+      submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].answers.ans}`;
     } else {
       element.classList.add('wrong');
+      submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].answers.ans}`;
     }
-    
-    nextButton.classList.remove('hide');
+       
   }
   
   function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
   }
-
-function displayMessage(correct) {
-    if(questions[cuttentQuestionIndex].answers.correct === 'true') {
-        submitElement.innerHTML = `correct answer is `
+  
+  nextButton.addEventListener('click', () => {
+    if(cuttentQuestionIndex < questions.length) {
+        handleNextButton();
+    } else {
+        startQuiz();
     }
-}
+  })
+
+  function handleNextButton() {
+    cuttentQuestionIndex++;
+    if(cuttentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showScore();
+    }
+  }
+
+  function showScore() {
+    resetFirstElements();
+    questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
+    submitElement.classList.add('hide');
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+    
+  }
