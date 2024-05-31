@@ -5,7 +5,8 @@ const questions = [
             {option: "assets/images/leopard.png", ans: "leopard", correct: false},
             {option: "assets/images/Lion.png", ans: "lion", correct: true},
             {option: "assets/images/Horse.png",ans: "Horse", correct: false},
-        ]
+        ],
+        correctAnswer: "Lion",
     },
     {
         question: "Which city is belongs to the England?",
@@ -13,7 +14,8 @@ const questions = [
             {option: "assets/images/london-bridge.png", correct: true},
             {option: "assets/images/eiffel-tower.png", correct: false},
             {option: "assets/images/Tajmahal.png", correct: false},
-        ]
+        ],
+        correctAnswer: "London-bridge",
     },
     {
         question: "Which one is the National Animal of India?",
@@ -21,7 +23,8 @@ const questions = [
             {option: "assets/images/deer.png", correct: false},
             {option: "assets/images/elephant.png", correct: false},
             {option: "assets/images/Tiger.png", correct: true},
-        ]
+        ],
+        correctAnswer: "Tiger",
     },
     {
         question: "What is the national flower of India?",
@@ -29,7 +32,8 @@ const questions = [
             {option: "assets/images/Rose.png", correct: false},
             {option: "assets/images/lotus.png", correct: true},
             {option: "assets/images/sunflower.png", correct: false},
-        ]
+        ],
+        correctAnswer: "Lotus",
     },
 ]
 const start = document.getElementById("start-btn");
@@ -50,6 +54,7 @@ function startQuiz() {
     console.log("start");
     start.classList.add("hide");
     menu.classList.add("hide");
+    submitElement.classList.add('hide');
     onlineQuiz.classList.remove("hide");
     showQuestion();
 
@@ -122,13 +127,13 @@ function selectAnswer(e) {
      if (correct) {
       element.classList.add('correct'); 
       score++;  
-      submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].answers.ans}`;
+      submitElement.classList.remove('hide');
+      submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     } else {
       element.classList.add('wrong');
-      submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].answers.ans}`;
+      submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     }
        
-  }
   
   function clearStatusClass(element) {
     element.classList.remove('correct');
