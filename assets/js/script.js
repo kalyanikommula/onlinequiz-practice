@@ -134,7 +134,7 @@ function selectAnswer(e) {
       submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     }
        
-  
+}
   function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
