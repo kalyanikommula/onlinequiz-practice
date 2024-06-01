@@ -89,6 +89,7 @@
       text-align: center;
       font-weight: bold;
       margin: 5px;
+      border-radius: 10px;
    }
    .controls {
       display: flex;
@@ -139,5 +140,6 @@
          border-radius: 5px;
          background-color: rgb(186, 133, 34);
         }
+        
      
    }

@@ -144,5 +144,5 @@ function selectAnswer(e) {
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
     nextButton.innerHTML = "Play Again";
     nextButton.style.display = "block";
-      
+      nextButton.addEventListener('click', startQuiz);
   }
