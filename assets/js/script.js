@@ -36,8 +36,9 @@ const questions = [
         correctAnswer: "Lotus",
     },
 ]
-const start = document.getElementById("start-btn");
-start.addEventListener('click', startQuiz);
+const logoElement = document.getElementById("logo");
+const startButton = document.getElementById("start-btn");
+startButton.addEventListener('click', startQuiz);
 const menu = document.getElementById("menu");
 const onlineQuiz = document.getElementById("onlineQuiz-container");
 const questionElement = document.getElementById("question");
@@ -45,21 +46,19 @@ const answerElement = document.getElementById("chooseAnswer");
 const submitElement = document.getElementById("submit-answer");
 const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
-let shuffledQuestions;
+
 let cuttentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz() {
-    
-    console.log("start");
-    start.classList.add("hide");
+     console.log("start");
+    logoElement.classList.add('hide');
+    startButton.classList.add("hide");
     menu.classList.add("hide");
     submitElement.classList.add('hide');
     onlineQuiz.classList.remove("hide");
     showQuestion();
-
-
-}
+   }
 function showQuestion() {
     resetFirstElements();
     let currentQuestion = questions[cuttentQuestionIndex];
@@ -75,43 +74,21 @@ function showQuestion() {
             images.dataset.correct = answer.correct;
         }
         images.addEventListener('click', selectAnswer);
-
-    })
-    
-}
+     })
+    }
 
 function resetFirstElements() {
+    clearStatusClass(document.body);
     nextButton.classList.add('hide')
     while(answerElement.firstChild) {
         answerElement.removeChild(answerElement.firstChild);
     }
 }
-/*function selectAnswer(e) {
-    const selectedImg = e.target;
-    const isCorrect =  selectedImg.dataset.correct === 'true';
-    if(isCorrect) {
-       selectedImg.classList.add('correct');
-        //submitElement.innerText = ` correct answer is ${answer.correct}`;
-        //console.log('correct');
-    } else {
-        selectedImg.classList.add('wrong');
-       // submitElement.innerText = `Aww!! sorry the correct answer is ${answer.correct} please try again`;
-        //console.log('wrong');
-        
-    }
 
-    Array.from(answerElement.children).forEach(images => {
-     if(images.dataset.correct === "true"){
-        images.classList.add('correct');
-     }
-     images.disabled = true;
-    })
-    nextButton.classList.remove('hide');
-}*/
 function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.correct;
+    setStatusClass(document.body, correct);
     /*Array.from(answerElement.children).forEach(img => {
      if(img.dataset.correct === 'true') {
         img.classList.add('correct');
@@ -128,12 +105,11 @@ function selectAnswer(e) {
       element.classList.add('correct'); 
       score++;  
       submitElement.classList.remove('hide');
-
       submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     } else {
       element.classList.add('wrong');
       submitElement.classList.remove('hide');
-      submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
+      submitElement.innerHTML = `Awww!! you choose the wrong answer and the correct answer is: ${questions[cuttentQuestionIndex].correctAnswer}`;
     }
        
 }
@@ -148,7 +124,7 @@ function selectAnswer(e) {
     } else {
         startQuiz();
     }
-  })
+  });
 
   function handleNextButton() {
     submitElement.classList.add('hide');
@@ -163,8 +139,8 @@ function selectAnswer(e) {
   function showScore() {
     resetFirstElements();
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
-    submitElement.classList.add('hide');
+    nextButton.classList.remove('hide');
     nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-    
+    //start.classList.remove('hide');
+    //start.style.display = "block";  
   }

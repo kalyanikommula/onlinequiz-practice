@@ -14,6 +14,20 @@
     background-color: hsl(var(--hue),100%,20%);
    
  }
+ #logo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  
+ }
+ #logo img {
+  width: 500px;
+  height: 250px;
+  display: block;
+  
+ }
  
  .container {
   width : 80%;
@@ -32,13 +46,7 @@
   text-align: center;
 
  }
- .wishes {
-   font-size: 20px;
-   text-align: center;
-   color: orange;
-   padding-bottom: 5px;
-    
- }
+ 
  .onlineQuiz-container {
   padding: 20px 0;
  }
@@ -89,10 +97,10 @@
    }
 
    .correct {
-    background-color: rgb(72, 164, 72);
+    background-color: rgb(19, 244, 19);
    }
    .wrong {
-    background-color: rgb(120, 55, 55);
+    background-color: rgb(176, 25, 25);
    }
    
    #submit-answer {
