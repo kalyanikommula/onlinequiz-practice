@@ -112,12 +112,12 @@ function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
     setStatusClass(document.body, correct)
-    Array.from(answerElement.children).forEach(img => {
+    /*Array.from(answerElement.children).forEach(img => {
      if(img.dataset.correct === 'true') {
         img.classList.add('correct');
      }
      img.disabled = true;
-     });
+     });*/
     
     nextButton.classList.remove('hide');
   }
@@ -128,9 +128,11 @@ function selectAnswer(e) {
       element.classList.add('correct'); 
       score++;  
       submitElement.classList.remove('hide');
+
       submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     } else {
       element.classList.add('wrong');
+      submitElement.classList.remove('hide');
       submitElement.innerHTML = `Awww!! sorry right answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
     }
        
@@ -149,6 +151,7 @@ function selectAnswer(e) {
   })
 
   function handleNextButton() {
+    submitElement.classList.add('hide');
     cuttentQuestionIndex++;
     if(cuttentQuestionIndex < questions.length) {
         showQuestion();
