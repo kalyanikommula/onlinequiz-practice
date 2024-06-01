@@ -14,7 +14,7 @@
     background-color: hsl(var(--hue),100%,20%);
    
  }
- #logo {
+ .logo-image {
   width: 100%;
   height: auto;
   display: flex;
@@ -22,10 +22,13 @@
   margin-top: 40px;
   
  }
- #logo img {
-  width: 500px;
+ .logo-image img {
+   width: 50%;
+  max-width: 500px;
   height: 250px;
   display: block;
+  border-radius: 10px;
+
   
  }
  
@@ -113,4 +116,28 @@
     border: 1px solid transparent;
     border-radius: 5px;
     background-color: rgb(186, 133, 34);
+   }
+
+   @media only screen and (max-width: 300px) {
+      #question {
+         font-size: 15px;
+         color: #001e4d;
+         font-weight: 600;
+         padding: 5px 10px; 
+         margin: 0 auto;
+         text-align: center;
+       
+        }
+        #submit-answer {
+         text-align: center;
+         font-size: 10px;
+         margin: 10px;
+         width: 100%;
+         color: blue;
+         padding: 10px;
+         border: 1px solid transparent;
+         border-radius: 5px;
+         background-color: rgb(186, 133, 34);
+        }
+     
    }

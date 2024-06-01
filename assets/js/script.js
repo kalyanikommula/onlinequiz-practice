@@ -36,10 +36,11 @@ const questions = [
         correctAnswer: "Lotus",
     },
 ]
-const logoElement = document.getElementById("logo");
+const logo = document.getElementById("logo");
 const startButton = document.getElementById("start-btn");
+const mainElement = document.getElementById("main-box");
 startButton.addEventListener('click', startQuiz);
-const menu = document.getElementById("menu");
+//const menu = document.getElementById("menu");
 const onlineQuiz = document.getElementById("onlineQuiz-container");
 const questionElement = document.getElementById("question");
 const answerElement = document.getElementById("chooseAnswer");
@@ -47,14 +48,16 @@ const submitElement = document.getElementById("submit-answer");
 const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
 
+
 let cuttentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz() {
      console.log("start");
-    logoElement.classList.add('hide');
+     logo.classList.add("hide");
     startButton.classList.add("hide");
-    menu.classList.add("hide");
+    mainElement.classList.remove("hide");
+    //menu.classList.add("hide");
     submitElement.classList.add('hide');
     onlineQuiz.classList.remove("hide");
     showQuestion();
@@ -139,8 +142,7 @@ function selectAnswer(e) {
   function showScore() {
     resetFirstElements();
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
-    nextButton.classList.remove('hide');
     nextButton.innerHTML = "Play Again";
-    //start.classList.remove('hide');
-    //start.style.display = "block";  
+    nextButton.style.display = "block";
+      
   }
