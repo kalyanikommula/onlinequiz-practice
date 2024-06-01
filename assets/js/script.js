@@ -47,8 +47,8 @@ const answerElement = document.getElementById("chooseAnswer");
 const submitElement = document.getElementById("submit-answer");
 const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
-
-
+const playAgain = document.getElementById("playagain");
+//playAgain.addEventListener('click',play);
 let cuttentQuestionIndex = 0;
 let score = 0;
 
@@ -142,7 +142,14 @@ function selectAnswer(e) {
   function showScore() {
     resetFirstElements();
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
-      nextButton.addEventListener('click', startQuiz);
-  }
+    //nextButton.innerHTML = "Play Again";
+    //nextButton.style.display = "block";
+    playAgain.classList.remove('hide');
+    playAgain.addEventListener('click',play);
+        
+    function play() {
+        startQuiz();
+    }
+    
+
+ }
