@@ -40,22 +40,23 @@ const logo = document.getElementById("logo");
 const headingElement = document.getElementById("heading");
 const startButton = document.getElementById("start-btn");
 const mainElement = document.getElementById("main-box");
-startButton.addEventListener('click', startQuiz);
-//const menu = document.getElementById("menu");
 const onlineQuiz = document.getElementById("onlineQuiz-container");
 const questionElement = document.getElementById("question");
 const answerElement = document.getElementById("chooseAnswer");
 const submitElement = document.getElementById("submit-answer");
 const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
-const playAgain = document.getElementById("playagain");
-//playAgain.addEventListener('click',play);
+const playAgain = document.getElementById("play-again");
+
 let cuttentQuestionIndex = 0;
 let score = 0;
+
+startButton.addEventListener('click', startQuiz);
 
 function startQuiz() {
     console.log("start");
     logo.classList.add("hide");
+    playAgain.classList.add("hide");
     headingElement.classList.add("hide");
     startButton.classList.add("hide");
     mainElement.classList.remove("hide");
@@ -126,7 +127,7 @@ function selectAnswer(e) {
     if(cuttentQuestionIndex < questions.length) {
         handleNextButton();
     } else {
-        startQuiz();
+        showScore();
     }
   });
 
@@ -143,7 +144,12 @@ function selectAnswer(e) {
   function showScore() {
     resetFirstElements();
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
+   nextButton.classList.add("hide");
+    playAgain.classList.remove('hide');
+    playAgain.addEventListener('click', () => {
+        score = 0;
+        cuttentQuestionIndex = 0;
+        startQuiz();
+    })
        
  }
