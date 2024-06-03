@@ -94,7 +94,7 @@ function selectAnswer(e) {
     const selectedImage = e.target;
     const correct = selectedImage.dataset.correct === "true";
     
-    Array.from(answerElement.children).forEach(img => {
+    /*Array.from(answerElement.children).forEach(img => {
         img.classList.remove('disabled');
     });
 
@@ -102,7 +102,7 @@ function selectAnswer(e) {
         selectedImage.classList.add("correct");
     } else {
         selectedImage.classList.add("wrong");
-    }
+    }*/
 
     // Add 'disabled' class to all images except the clicked one
     Array.from(answerElement.children).forEach(img => {
@@ -122,7 +122,7 @@ function selectAnswer(e) {
       element.classList.add('correct'); 
       score++;  
       submitElement.classList.remove('hide');
-      submitElement.innerHTML = `correct answer is ${questions[currentQuestionIndex].correctAnswer}`;
+      submitElement.innerHTML = `correct!! The answer is ${questions[currentQuestionIndex].correctAnswer}`;
     } else {
       element.classList.add('wrong');
       submitElement.classList.remove('hide');
