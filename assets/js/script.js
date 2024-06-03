@@ -48,7 +48,7 @@ const nextButton = document.getElementById("next-btn");
 const imageAnswer = document.getElementsByTagName("img");
 const playAgain = document.getElementById("play-again");
 
-let cuttentQuestionIndex = 0;
+let currentQuestionIndex = 0;
 let score = 0;
 
 startButton.addEventListener('click', startQuiz);
@@ -66,15 +66,15 @@ function startQuiz() {
    }
 function showQuestion() {
     resetFirstElements();
-    let currentQuestion = questions[cuttentQuestionIndex];
-    let questionNo = cuttentQuestionIndex + 1;
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
     questionElement.innerHTML = questionNo + "." + currentQuestion.question;
     currentQuestion.answers.forEach(answer => {
         const images = document.createElement("img");
         //images.innerHTML = answer.option;
         images.setAttribute('src' , answer.option);
-       images.classList.add("image");
-        answerElement.appendChild(images);
+        images.classList.add("image");
+     answerElement.appendChild(images);
         if(answer.correct){
             images.dataset.correct = answer.correct;
         }
@@ -91,18 +91,30 @@ function resetFirstElements() {
 }
 
 function selectAnswer(e) {
-    const selectedButton = e.target;
-    const correct = selectedButton.dataset.correct;
-    setStatusClass(document.body, correct);
-    /*Array.from(answerElement.children).forEach(img => {
-     if(img.dataset.correct === 'true') {
-        img.classList.add('correct');
-     }
-     img.disabled = true;
-     });*/
+    const selectedImage = e.target;
+    const correct = selectedImage.dataset.correct === "true";
     
-    nextButton.classList.remove('hide');
-  }
+    Array.from(answerElement.children).forEach(img => {
+        img.classList.remove('disabled');
+    });
+
+    if (correct) {
+        selectedImage.classList.add("correct");
+    } else {
+        selectedImage.classList.add("wrong");
+    }
+
+    // Add 'disabled' class to all images except the clicked one
+    Array.from(answerElement.children).forEach(img => {
+        if (img!== selectedImage) {
+            img.classList.add('disabled');
+        }
+    });
+    setStatusClass(document.body, correct);
+
+    nextButton.classList.remove("hide");
+
+  } 
   
   function setStatusClass(element, correct) {
     clearStatusClass(element);
@@ -110,11 +122,11 @@ function selectAnswer(e) {
       element.classList.add('correct'); 
       score++;  
       submitElement.classList.remove('hide');
-      submitElement.innerHTML = `correct answer is ${questions[cuttentQuestionIndex].correctAnswer}`;
+      submitElement.innerHTML = `correct answer is ${questions[currentQuestionIndex].correctAnswer}`;
     } else {
       element.classList.add('wrong');
       submitElement.classList.remove('hide');
-      submitElement.innerHTML = `Awww!! you choose the wrong answer and the correct answer is: ${questions[cuttentQuestionIndex].correctAnswer}`;
+      submitElement.innerHTML = `Awww!! you choose the wrong answer and the correct answer is: ${questions[currentQuestionIndex].correctAnswer}`;
     }
        
 }
@@ -124,7 +136,7 @@ function selectAnswer(e) {
   }
   
   nextButton.addEventListener('click', () => {
-    if(cuttentQuestionIndex < questions.length) {
+    if(currentQuestionIndex < questions.length) {
         handleNextButton();
     } else {
         showScore();
@@ -132,9 +144,12 @@ function selectAnswer(e) {
   });
 
   function handleNextButton() {
+    Array.from(answerElement.children).forEach(img => {
+        img.classList.remove('disabled');
+    });
     submitElement.classList.add('hide');
-    cuttentQuestionIndex++;
-    if(cuttentQuestionIndex < questions.length) {
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
         showScore();
@@ -148,7 +163,7 @@ function selectAnswer(e) {
     playAgain.classList.remove('hide');
     playAgain.addEventListener('click', () => {
         score = 0;
-        cuttentQuestionIndex = 0;
+        currentQuestionIndex = 0;
         startQuiz();
     })
        

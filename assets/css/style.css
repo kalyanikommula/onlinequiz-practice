@@ -136,6 +136,10 @@
     border-radius: 5px;
     background-color: rgb(186, 133, 34);
    }
+   .disabled {
+      pointer-events: none;
+  }
+   
 
    @media only screen and (max-width: 300px) {
       #question {
