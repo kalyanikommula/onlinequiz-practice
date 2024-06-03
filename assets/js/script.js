@@ -37,6 +37,7 @@ const questions = [
     },
 ]
 const logo = document.getElementById("logo");
+const headingElement = document.getElementById("heading");
 const startButton = document.getElementById("start-btn");
 const mainElement = document.getElementById("main-box");
 startButton.addEventListener('click', startQuiz);
@@ -53,11 +54,11 @@ let cuttentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz() {
-     console.log("start");
-     logo.classList.add("hide");
+    console.log("start");
+    logo.classList.add("hide");
+    headingElement.classList.add("hide");
     startButton.classList.add("hide");
     mainElement.classList.remove("hide");
-    //menu.classList.add("hide");
     submitElement.classList.add('hide');
     onlineQuiz.classList.remove("hide");
     showQuestion();
@@ -142,14 +143,7 @@ function selectAnswer(e) {
   function showScore() {
     resetFirstElements();
     questionElement.innerHTML = `You scored  ${score} out of ${questions.length}!`;
-    //nextButton.innerHTML = "Play Again";
-    //nextButton.style.display = "block";
-    playAgain.classList.remove('hide');
-    playAgain.addEventListener('click',play);
-        
-    function play() {
-        startQuiz();
-    }
-    
-
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+       
  }
